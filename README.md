@@ -1,4 +1,4 @@
-#angular-http-assist
+#angular-http-assist v1
 
 Perform REST call via angularjs' `$http` with angular-http-assist without hassle on setting up services or factory to handle requests.
 
