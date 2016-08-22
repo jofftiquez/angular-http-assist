@@ -46,7 +46,7 @@ angular.module('angular-http-assist', []) .provider('$httpAssist', function () {
                 }, this); 
             }
 
-            if(method == 'POST' || method == 'PUT' || method == 'UPDATE'){
+            if(method == 'POST' || method == 'PUT'){
                 if(options.data){
                     if(!(typeof options.data === 'object')){
                         $log.error('INVALID TYPE ERROR: "data" should be and object, you passed a/an '+typeof options.data);
