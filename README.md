@@ -126,4 +126,4 @@ This sample will construct an http request like this.
 
 ##Notes
 
-Every request returns a promise by the way, so it's "thenable".
+Every request returns a promise by the way, so it's "**thenable**".
