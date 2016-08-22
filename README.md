@@ -1,6 +1,6 @@
 #angular-http-assist
 
-Perform http request using angular-http-assist without hassle on setting up services to handle requests.
+Perform REST call via angularjs' `$http` with angular-http-assist without hassle on setting up services or factory to handle requests.
 
 ##Installation
 
@@ -27,8 +27,8 @@ app.config(['$httpAssistProvider' function($httpAssistProvider){
 	
 	// Initialize with config
 	$httpAssistProvider.config({
-        url:'https://some-web.com/api',
-        printRequest: true
+        url:'https://some-web.com/api', // you api url.
+        printRequest: true // print every request on console for dev purposes.
     });
 
 }])
@@ -41,7 +41,7 @@ app.config(['$httpAssistProvider' function($httpAssistProvider){
 Inject the `$httpAssist` provider on your controller.
 
 ```javascript
-app.controller('yourController', ['$httpAssistProvider' function($httpAssistProvider){
+app.controller('yourController', ['$httpAssist' function($httpAssist){
 	
 	// Perform an http request against the api url you provided in the config()
 
@@ -69,8 +69,8 @@ Has an object parameter config.
 
 ```javascript
 {
-    url:'https://foo.com/api',
-    printRequest: true // Prints every request on the console if set to true.
+    url:'https://foo.com/api', // you api url.
+    printRequest: true // print every request on console for dev purposes.
 }
 ```
 
@@ -78,7 +78,7 @@ Has an object parameter config.
 
 *method* - the HTTP methods (GET, POST, PUT, DELETE)
 
-*endpoint* - the route endpoint from 'the' API you are connecting to. Normally an API exposes a url where you will be performing you http requests. E.g. `https://foo.com/api/users`, `https://foo.com/api/students`. The endpoint in case will be `/users` and `students`.
+*endpoint* - the route endpoint from 'the' API you are connecting to. Normally an API exposes a url where you will be performing your REST calls. E.g. `https://foo.com/api/users`, `https://foo.com/api/students`. The endpoint in case will be `/users` and `/students`.
 
 *options* -  
 ```javascript
@@ -108,7 +108,7 @@ var options = {
 	}
 }
 
-.reqeust('POST', '/user', options)
+.request('POST', '/user', options)
 ...
 ```
 
@@ -126,4 +126,4 @@ This sample will construct an http request like this.
 
 ##Notes
 
-Every request returns a promise by the way.
+Every request returns a promise by the way, so it's "thenable".
