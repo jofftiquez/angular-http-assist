@@ -1,4 +1,5 @@
 {
+  "version": "1.0.1",
   "name": "angular-http-assist",
   "main": "angular-http-assist.js",
   "homepage": "https://github.com/jofftiquez/angular-http-assist",
