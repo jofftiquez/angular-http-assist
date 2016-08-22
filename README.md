@@ -18,8 +18,6 @@ On your `app.js` inject the module `angular-http-assist`
 var app = angular.module('yourApp', ['angular-http-assist'])
 ```
 
----
-
 **.config()** 
 
 Initialize the provider.
@@ -35,7 +33,6 @@ app.config(['$httpAssistProvider' function($httpAssistProvider){
 
 }])
 ```
----
 
 ##Usage
 
@@ -44,7 +41,7 @@ app.config(['$httpAssistProvider' function($httpAssistProvider){
 Inject the `$httpAssist` provider on your controller.
 
 ```javascript
-app.controller(['$httpAssistProvider' function($httpAssistProvider){
+app.controller('yourController', ['$httpAssistProvider' function($httpAssistProvider){
 	
 	// Perform an http request against the api url you provided in the config()
 
@@ -64,7 +61,69 @@ app.controller(['$httpAssistProvider' function($httpAssistProvider){
 }])
 ```
 
+##Functions
 
+**.config(config)**
 
+Has an object parameter config. 
 
+```javascript
+{
+    url:'https://foo.com/api',
+    printRequest: true // Prints every request on the console if set to true.
+}
+```
 
+**.request(method, endpoint, options)**
+
+*method* - the HTTP methods (GET, POST, PUT, DELETE)
+
+*endpoint* - the route endpoint from 'the' API you are connecting to. Normally an API exposes a url where you will be performing you http requests. E.g. `https://foo.com/api/users`, `https://foo.com/api/students`. The endpoint in case will be `/users` and `students`.
+
+*options* -  
+```javascript
+{
+    params:['id', 'some-param'], // If your request doesnt require any params, leave the array empty.
+    queries:['foo=bar', 'baz=lol'], // Same with queries leave empty if not needed.
+    data:{foo:'bar'} // not required when doing GET request.
+}
+```
+
+##Sample
+
+```javascript
+...
+.config({
+    url:'https://foo.com/api',
+    printRequest: true
+})
+...
+
+...
+var options = {
+	params:['param1'],
+	queries:['type=0'],
+	data:{
+		name:'John Doe'
+	}
+}
+
+.reqeust('POST', '/user', options)
+...
+```
+
+This sample will construct an http request like this. 
+
+```javascript
+{
+	method: "POST", 
+	url: "https://foo.com/api/param1?type=0"
+	data: {
+		"name":"John Doe"
+	}
+}
+```
+
+##Notes
+
+Every request returns a promise by the way.
